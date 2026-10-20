@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sangeet Hub Audio | Created by Keshav Shastry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #09090b;
+      --bg-card: #121318;
+      --bg-card-hover: #1a1c23;
+      --accent-purple: #8b5cf6;
+      --accent-cyan: #06b6d4;
+      --accent-pink: #ec4899;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #27272a;
+      --glow-purple: rgba(139, 92, 246, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 70%, rgba(6, 182, 212, 0.1) 0%, transparent 40%);
+    }
+
+    header {
+      border-bottom: 1px solid var(--border-color);
+      background: rgba(9, 9, 11, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 0 15px var(--glow-purple);
+    }
+
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(to right, #ffffff, #a5b4fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .creator-badge {
+      font-size: 0.8rem;
+      color: var(--accent-cyan);
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stats-bar {
+      display: flex;
+      gap: 1.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stat-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-purple);
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .hero-banner {
+      text-align: center;
+      padding: 3rem 1rem;
+      margin-bottom: 2.5rem;
+      background: linear-gradient(180deg, rgba(139, 92, 246, 0.08) 0%, rgba(0,0,0,0) 100%);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .hero-title {
+      font-size: 2.75rem;
+      font-weight: 900;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .filter-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .search-input {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.75rem 1.25rem;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      width: 100%;
+      max-width: 320px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-purple);
+      box-shadow: 0 0 12px var(--glow-purple);
+    }
+
+    .tag-filters {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tag-btn.active, .tag-btn:hover {
+      background: var(--accent-purple);
+      color: white;
+      border-color: var(--accent-purple);
+    }
+
+    .songs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .song-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .song-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-purple);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px var(--glow-purple);
+    }
+
+    .thumbnail-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      overflow: hidden;
+      background: #000;
+    }
+
+    .thumbnail-wrapper img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .song-card:hover .thumbnail-wrapper img {
+      transform: scale(1.05);
+    }
+
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .song-card:hover .play-overlay {
+      opacity: 1;
+    }
+
+    .yt-badge {
+      background: #ff0000;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: 0 4px 12px rgba(255,0,0,0.4);
+    }
+
+    .song-content {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .genre-tag {
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .song-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    .song-title:hover {
+      color: var(--accent-purple);
+    }
+
+    .song-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .song-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .views-counter {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .views-counter svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--accent-cyan);
+    }
+
+    .listen-btn {
+      background: linear-gradient(135deg, var(--accent-purple), #6d28d9);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    .listen-btn:hover {
+      transform: scale(1.02);
+    }
+
+    footer {
+      border-top: 1px solid var(--border-color);
+      margin-top: 4rem;
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    footer span {
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="logo-section">
+        <div class="logo-icon">🎵</div>
+        <div>
+          <div class="brand-title">Sangeet Hub Audio</div>
+          <div class="creator-badge">Created by Keshav Shastry</div>
+        </div>
+      </div>
+      
+      <div class="stats-bar">
+        <div class="stat-item">
+          <span class="stat-value" id="totalTracks">6</span>
+          <span class="stat-label">Tracks</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value" id="totalGlobalViews">0</span>
+          <span class="stat-label">Total Views</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-banner">
+      <h1 class="hero-title">Original Audio Stories & Themes</h1>
+      <p class="hero-subtitle">Explore cinematic theme tracks, historical audio sagas, and sci-fi thrillers composed for original narrative series.</p>
+    </section>
+
+    <div class="filter-section">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search track name or genre...">
+      <div class="tag-filters">
+        <button class="tag-btn active" onclick="filterGenre('All')">All</button>
+        <button class="tag-btn" onclick="filterGenre('Suspense')">Suspense</button>
+        <button class="tag-btn" onclick="filterGenre('History')">History</button>
+        <button class="tag-btn" onclick="filterGenre('Sci-Fi')">Sci-Fi</button>
+        <button class="tag-btn" onclick="filterGenre('Dark Fantasy')">Dark Fantasy</button>
+      </div>
+    </div>
+
+    <div class="songs-grid" id="songsGrid"></div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 <span>Sangeet Hub Audio</span> — Curated and Developed by <span>Keshav Shastry</span>. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const songData = [
+      {
+        id: "9N9WMtboJ9c",
+        title: "Kiska Khel (किसका खेल) — Theme Song",
+        genre: "Suspense",
+        desc: "An atmospheric theme song built for a psychological mystery story. Captures the eerie, silent tension of a late-night chase.",
+        views: 0
+      },
+      {
+        id: "opib_Ydtx20",
+        title: "Decline of the Mughal Empire — Teaser Theme",
+        genre: "History",
+        desc: "An evocative historical audio teaser exploring the political decay and dramatic fall of the throne across 150 years.",
+        views: 0
+      },
+      {
+        id: "jL59BvHjdjw",
+        title: "Muvers Ke Paar (म्यूवर्स के पार) — Dharma Series Theme",
+        genre: "Sci-Fi",
+        desc: "An epic cosmic sci-fi thriller theme song featuring deep galaxy lore, futuristic battles, and morally complex choices.",
+        views: 0
+      },
+      {
+        id: "qaAnODDbXm8",
+        title: "Darkveil Awakens — Shadow King Theme",
+        genre: "Dark Fantasy",
+        desc: "A dark, intense character piece tracing the psychological descent of Yaksha as an ancient shadow entity overtakes him.",
+        views: 0
+      },
+      {
+        id: "qmDtaO32yLk",
+        title: "Changez Khan — Unheard Love Story",
+        genre: "History",
+        desc: "A melodic historical ballad focusing on the personal relationship and devotion between Genghis Khan and Queen Börte.",
+        views: 0
+      },
+      {
+        id: "ECuZF88rpH8",
+        title: "Ritugn — Story of Suryavtar Theme",
+        genre: "Sci-Fi",
+        desc: "A grand soundtrack fusing ancient Vedic wisdom from the Rigveda with futuristic science and cosmic calculations.",
+        views: 0
+      }
+    ];
+
+    let currentGenre = 'All';
+
+    function openYouTubeTrack(id) {
+      const song = songData.find(s => s.id === id);
+      if (song) {
+        song.views += 1;
+        updateViewsUI();
+      }
+      const ytUrl = `https://www.youtube.com/watch?v=${id}`;
+      window.open(ytUrl, '_blank');
+    }
+
+    function updateViewsUI() {
+      let total = 0;
+      songData.forEach(song => {
+        total += song.views;
+        const viewEl = document.getElementById(`views-${song.id}`);
+        if (viewEl) {
+          viewEl.textContent = `${song.views} views`;
+        }
+      });
+      document.getElementById('totalGlobalViews').textContent = total;
+    }
+
+    function renderSongs(songs) {
+      const grid = document.getElementById('songsGrid');
+      grid.innerHTML = '';
+
+      songs.forEach(song => {
+        const thumbUrl = `https://img.youtube.com/vi/${song.id}/hqdefault.jpg`;
+        
+        const card = document.createElement('div');
+        card.className = 'song-card';
+        card.innerHTML = `
+          <div class="thumbnail-wrapper" onclick="openYouTubeTrack('${song.id}')" style="cursor: pointer;">
+            <img src="${thumbUrl}" alt="${song.title}">
+            <div class="play-overlay">
+              <div class="yt-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Watch on YouTube
+              </div>
+            </div>
+          </div>
+          <div class="song-content">
+            <span class="genre-tag">${song.genre}</span>
+            <h3 class="song-title" onclick="openYouTubeTrack('${song.id}')">${song.title}</h3>
+            <p class="song-desc">${song.desc}</p>
+            <div class="song-footer">
+              <div class="views-counter">
+                <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                <span id="views-${song.id}">${song.views} views</span>
+              </div>
+              <button class="listen-btn" onclick="openYouTubeTrack('${song.id}')">
+                Play Song ↗
+              </button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterGenre(genre) {
+      currentGenre = genre;
+      
+      document.querySelectorAll('.tag-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent === genre);
+      });
+
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      
+      const filtered = songData.filter(song => {
+        const matchesGenre = (currentGenre === 'All' || song.genre === currentGenre);
+        const matchesSearch = song.title.toLowerCase().includes(searchTerm) || 
+                              song.genre.toLowerCase().includes(searchTerm) ||
+                              song.desc.toLowerCase().includes(searchTerm);
+        return matchesGenre && matchesSearch;
+      });
+
+      renderSongs(filtered);
+      updateViewsUI();
+    }
+
+    document.getElementById('searchInput').addEventListener('input', applyFilters);
+
+    // Initial render
+    renderSongs(songData);
+    updateViewsUI();
+  </script>
+</body>
+</html>
