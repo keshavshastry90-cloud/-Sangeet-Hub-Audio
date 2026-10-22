@@ -383,11 +383,11 @@
       
       <div class="stats-bar">
         <div class="stat-item">
-          <span class="stat-value" id="totalTracks">6</span>
+          <span class="stat-value" id="totalTracks">7</span>
           <span class="stat-label">Tracks</span>
         </div>
         <div class="stat-item">
-          <span class="stat-value" id="totalGlobalViews">0</span>
+          <span class="stat-value" id="totalGlobalViews">238</span>
           <span class="stat-label">Total Views</span>
         </div>
       </div>
@@ -404,6 +404,7 @@
       <input type="text" id="searchInput" class="search-input" placeholder="Search track name or genre...">
       <div class="tag-filters">
         <button class="tag-btn active" onclick="filterGenre('All')">All</button>
+        <button class="tag-btn" onclick="filterGenre('Inspirational')">Inspirational</button>
         <button class="tag-btn" onclick="filterGenre('Suspense')">Suspense</button>
         <button class="tag-btn" onclick="filterGenre('History')">History</button>
         <button class="tag-btn" onclick="filterGenre('Sci-Fi')">Sci-Fi</button>
@@ -421,46 +422,53 @@
   <script>
     const songData = [
       {
+        id: "ikmxd3JbnWw",
+        title: "Theme Song — Lakshmi Mittal Story",
+        genre: "Inspirational",
+        desc: "An epic, soaring anthem of perseverance and ambition: 'ठंडा लोहा जलते सपने, आग में ढलते हैं इरादे' — tracing the journey of cold steel to global triumph.",
+        views: 54
+      },
+      {
         id: "9N9WMtboJ9c",
         title: "Kiska Khel (किसका खेल) — Theme Song",
         genre: "Suspense",
         desc: "An atmospheric theme song built for a psychological mystery story. Captures the eerie, silent tension of a late-night chase.",
-        views: 0
-      },
-      {
-        id: "opib_Ydtx20",
-        title: "Decline of the Mughal Empire — Teaser Theme",
-        genre: "History",
-        desc: "An evocative historical audio teaser exploring the political decay and dramatic fall of the throne across 150 years.",
-        views: 0
+        views: 43
       },
       {
         id: "jL59BvHjdjw",
         title: "Muvers Ke Paar (म्यूवर्स के पार) — Dharma Series Theme",
         genre: "Sci-Fi",
         desc: "An epic cosmic sci-fi thriller theme song featuring deep galaxy lore, futuristic battles, and morally complex choices.",
-        views: 0
-      },
-      {
-        id: "qaAnODDbXm8",
-        title: "Darkveil Awakens — Shadow King Theme",
-        genre: "Dark Fantasy",
-        desc: "A dark, intense character piece tracing the psychological descent of Yaksha as an ancient shadow entity overtakes him.",
-        views: 0
-      },
-      {
-        id: "qmDtaO32yLk",
-        title: "Changez Khan — Unheard Love Story",
-        genre: "History",
-        desc: "A melodic historical ballad focusing on the personal relationship and devotion between Genghis Khan and Queen Börte.",
-        views: 0
+        views: 39
       },
       {
         id: "ECuZF88rpH8",
         title: "Ritugn — Story of Suryavtar Theme",
         genre: "Sci-Fi",
         desc: "A grand soundtrack fusing ancient Vedic wisdom from the Rigveda with futuristic science and cosmic calculations.",
-        views: 0
+        views: 35
+      },
+      {
+        id: "qaAnODDbXm8",
+        title: "Darkveil Awakens — Shadow King Theme",
+        genre: "Dark Fantasy",
+        desc: "A dark, intense character piece tracing the psychological descent of Yaksha as an ancient shadow entity overtakes him.",
+        views: 28
+      },
+      {
+        id: "qmDtaO32yLk",
+        title: "Changez Khan — Unheard Love Story",
+        genre: "History",
+        desc: "A melodic historical ballad focusing on the personal relationship and devotion between Genghis Khan and Queen Börte.",
+        views: 21
+      },
+      {
+        id: "opib_Ydtx20",
+        title: "Decline of the Mughal Empire — Teaser Theme",
+        genre: "History",
+        desc: "An evocative historical audio teaser exploring the political decay and dramatic fall of the throne across 150 years.",
+        views: 18
       }
     ];
 
@@ -485,7 +493,14 @@
           viewEl.textContent = `${song.views} views`;
         }
       });
-      document.getElementById('totalGlobalViews').textContent = total;
+      const totalGlobalEl = document.getElementById('totalGlobalViews');
+      if (totalGlobalEl) {
+        totalGlobalEl.textContent = total;
+      }
+      const totalTracksEl = document.getElementById('totalTracks');
+      if (totalTracksEl) {
+        totalTracksEl.textContent = songData.length;
+      }
     }
 
     function renderSongs(songs) {
